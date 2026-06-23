@@ -223,10 +223,10 @@ void showCreditsScreen() {
   u8g2.setFont(u8g2_font_helvB08_tr);
   drawCenteredStr(18, "Credits to");
   
-  u8g2.setFont(u8g2_font_helvB14_tr);
+  u8g2.setFont(u8g2_font_helvB12_tr);
   drawCenteredStr(40, "LU6APR");
   
-  u8g2.setFont(u8g2_font_helvB12_tr);
+  u8g2.setFont(u8g2_font_helvB08_tr);
   drawCenteredStr(58, "GP 3.0");
   
   u8g2.sendBuffer();
