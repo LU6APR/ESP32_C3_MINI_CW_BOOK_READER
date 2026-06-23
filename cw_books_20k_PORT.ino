@@ -1,12 +1,12 @@
 // ==========================================
-//   LIBRERÍAS
+//   BIBLIOTECAS
 // ==========================================
 #include <Arduino.h>
 #include <U8g2lib.h>
 #include <Wire.h>
 
 // ==========================================
-//   CONFIGURACIÓN DE PINES
+//   CONFIGURACAO DE PINOS
 // ==========================================
 #define PIN_DIT         2
 #define PIN_DAH         3
@@ -23,7 +23,7 @@
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
 // ==========================================
-//   CONFIGURACIÓN CW
+//   CONFIGURACAO CW
 // ==========================================
 #define FREQ_SIDETONE   700
 #define DEBOUNCE_TIME   50
@@ -39,7 +39,7 @@ bool isPaused = false;
 int currentCharIndex = 0;
 
 // ==========================================
-//   TABLA DE CÓDIGO MORSE
+//   TABELA DE CODIGO MORSE
 // ==========================================
 struct MorseCode {
   char character;
@@ -68,7 +68,7 @@ const MorseCode morseTable[] PROGMEM = {
 const int morseTableSize = sizeof(morseTable) / sizeof(morseTable[0]);
 
 // ==========================================
-//   TEXTO EN PORTUGUÉS
+//   TEXTO EM PORTUGUES
 // ==========================================
 const char text[] PROGMEM = 
 "Em 1866, os oceanos do mundo sao aterrorizados por um suposto monstro marinho que afunda navios. "
@@ -104,7 +104,7 @@ const char text[] PROGMEM =
 "luz.";
 
 // ==========================================
-//   FUNCIONES AUXILIARES
+//   FUNCOES AUXILIARES
 // ==========================================
 
 void drawCenteredStr(int16_t y, const char* text) {
@@ -198,7 +198,7 @@ void playText() {
 }
 
 // ==========================================
-//   PANTALLAS (en portugués)
+//   TELAS
 // ==========================================
 
 void showSplashScreen() {
@@ -212,6 +212,22 @@ void showSplashScreen() {
   
   u8g2.setFont(u8g2_font_helvB10_tr);
   drawCenteredStr(60, "Submarinas");
+  
+  u8g2.sendBuffer();
+  delay(3000);
+}
+
+void showCreditsScreen() {
+  u8g2.clearBuffer();
+  
+  u8g2.setFont(u8g2_font_helvB08_tr);
+  drawCenteredStr(18, "Creditos a");
+  
+  u8g2.setFont(u8g2_font_helvB14_tr);
+  drawCenteredStr(40, "LU6APR");
+  
+  u8g2.setFont(u8g2_font_helvB12_tr);
+  drawCenteredStr(58, "GP 3.0");
   
   u8g2.sendBuffer();
   delay(3000);
@@ -285,6 +301,7 @@ void setup() {
   u8g2.begin();
   
   showSplashScreen();
+  showCreditsScreen();
   showSpeedSelection();
 }
 
